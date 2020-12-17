@@ -3,8 +3,10 @@ package ru.job4j.chess.firuges.black;
 import javafx.scene.control.Alert;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.chess.FigureNotFoundException;
 import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.Logic;
+import ru.job4j.chess.OccupiedCellException;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
@@ -33,35 +35,17 @@ public class BishopBlackTest {
         Logic logic = new Logic();
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         logic.add(bishopBlack);
-
-        try {
-            logic.move(Cell.C1, Cell.G5);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
         Cell[] rsl = bishopBlack.way(Cell.G5);
         Assert.assertThat(rsl, is(new Cell[]{Cell.D2, Cell.E3, Cell.F4, Cell.G5}));
     }
 
 
-    @Test
-    public void whenStepsWayFalse() {
+    @Test(expected = ImpossibleMoveException.class)
+    public void whenStepsWayFalse() throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         logic.add(bishopBlack);
-
-        try {
-            logic.move(Cell.C1, Cell.F5);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        String rsl = null;
-        try {
-            bishopBlack.way(Cell.F5);
-        } catch (ImpossibleMoveException e) {
-            rsl = e.getMessage();
-        }
-        Assert.assertThat(rsl, is(String.format("Could not move by diagonal from %s to %s", Cell.C1, Cell.F5)));
+        logic.move(Cell.C1, Cell.F5);
+        bishopBlack.way(Cell.F5);
     }
 }
