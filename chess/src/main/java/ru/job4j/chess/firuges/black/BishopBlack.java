@@ -4,8 +4,6 @@ import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
-import static java.lang.Math.abs;
-
 public class BishopBlack implements Figure {
     private final Cell position;
 

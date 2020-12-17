@@ -9,9 +9,7 @@ import ru.job4j.chess.Logic;
 import ru.job4j.chess.OccupiedCellException;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
-
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class BishopBlackTest {
 
@@ -29,7 +27,6 @@ public class BishopBlackTest {
         Assert.assertThat(rsl.position(), is(Cell.A3));
     }
 
-
     @Test
     public void whenStepsWayTrue() throws ImpossibleMoveException {
         Logic logic = new Logic();
@@ -38,7 +35,6 @@ public class BishopBlackTest {
         Cell[] rsl = bishopBlack.way(Cell.G5);
         Assert.assertThat(rsl, is(new Cell[]{Cell.D2, Cell.E3, Cell.F4, Cell.G5}));
     }
-
 
     @Test(expected = ImpossibleMoveException.class)
     public void whenStepsWayFalse() throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
